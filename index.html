@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>黑暗地城 - D&D 暗影</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+        <div class="stat-group">
+            <div>LV <span id="lv-val">1</span> <span id="floor-val">B1</span></div>
+            <div class="hp-bar-container"><div id="hp-fill"></div></div>
+            <div id="hp-text">100 / 100</div>
+        </div>
+        <div class="stat-group" style="text-align: right;">
+            <div class="gold-text">$ <span id="gold-val">0</span></div>
+            <div>ATK: <span id="atk-val">10</span></div>
+            <div>DEF: <span id="def-val">5</span></div>
+        </div>
+    </div>
+
+    <div id="msg-log"></div>
+
+    <div id="inventory" class="hidden">
+        <div class="inv-slot" id="slot-0"></div>
+        <div class="inv-slot" id="slot-1"></div>
+        <div class="inv-slot" id="slot-2"></div>
+        <div class="inv-slot" id="slot-3"></div>
+    </div>
+
+    <!-- Controls -->
+    <div id="controls" class="hidden">
+        <div class="ctrl-btn" id="ctrl-up">↑</div>
+        <div class="ctrl-btn" id="ctrl-left">←</div>
+        <div class="ctrl-btn" id="ctrl-right">→</div>
+        <div class="ctrl-btn" id="ctrl-down">↓</div>
+    </div>
+
+    <!-- Title Screen -->
+    <div id="title-screen" class="overlay">
+        <h1>黑暗地城<br><span style="font-size: 1.2rem; color: #555;">D&D 暗影</span></h1>
+        <button id="start-btn">開始冒險</button>
+        <button id="load-btn">讀取進度</button>
+        <button id="help-btn">如何遊玩</button>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="death-screen" class="overlay hidden">
+        <h1 style="color: #666;">你已力竭而亡</h1>
+        <p style="margin-bottom: 20px;">黑暗吞噬了你的靈魂...</p>
+        <button id="retry-btn">重新開始</button>
+        <button id="load-death-btn">讀取存檔</button>
+    </div>
+
+    <!-- Victory Screen -->
+    <div id="victory-screen" class="overlay hidden">
+        <h1>傳奇誕生！</h1>
+        <p style="margin-bottom: 20px;">你擊敗了黑暗領主，重返光明。</p>
+        <p id="final-score" style="margin-bottom: 20px;"></p>
+        <button onclick="location.reload()">再玩一次</button>
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div id="how-to-play" class="hidden">
+    <h2 style="color: var(--accent-color); margin-bottom: 10px;">冒險指南</h2>
+    <ul style="list-style: none;">
+        <li>🛡️ <b>移動：</b>滑動畫面、點擊箭頭或使用方向鍵。</li>
+        <li>⚔️ <b>戰鬥：</b>靠近敵人即自動戰鬥，注意血量。</li>
+        <li>💎 <b>目標：</b>殺光層內所有怪物，出口樓梯才會出現。</li>
+        <li>🧪 <b>道具：</b>點擊下方的藥水（如有）可恢復 HP。</li>
+        <li>📜 <b>存檔：</b>每過一層會自動存檔。</li>
+    </ul>
+    <button id="close-help-btn" style="width: 100%; margin-top: 20px;">知道了</button>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
